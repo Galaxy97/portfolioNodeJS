@@ -8,9 +8,10 @@ const port = 3000
 const server = http.createServer((req, res) => {
   const path = url.parse(req.url).pathname
   if (/^\/url/.test(path)) {
+    let query
     const hasQuery = req.url.search(/\?/)
     if (hasQuery !== -1) {
-      var query = queryString.parse(req.url.slice(hasQuery + 1)) // +1 необхідно бо вбудований в ноду парсер чутлий до "?"
+    query = queryString.parse(req.url.slice(hasQuery + 1)) // +1 необхідно бо вбудований в ноду парсер чутлий до "?"
     }
     if (query.first && query.second) {
       fs.readFile('finility-097.json', 'utf8', (error, data) => {
